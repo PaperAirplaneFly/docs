@@ -1,6 +1,6 @@
 (function () {
     if (typeof window.jsb === 'object') {
-        var hotUpdateSearchPaths = localStorage.getItem('HotUpdateSearchPaths');
+        var hotUpdateSearchPaths = localStorage.getItem('HOT_UPDATE_RES_SEARCH_PATHS_LOCAL_STORAGE_KEY');
         if (hotUpdateSearchPaths) {
             var paths = JSON.parse(hotUpdateSearchPaths);
             jsb.fileUtils.setSearchPaths(paths);
