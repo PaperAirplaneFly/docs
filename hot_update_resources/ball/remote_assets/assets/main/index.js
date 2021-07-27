@@ -3240,13 +3240,14 @@ System.register("chunks:///_virtual/pool-manager.ts", ['cc'], function (exports)
 System.register("chunks:///_virtual/splash.ts", ['cc', './GameManager.ts'], function (exports) {
   'use strict';
 
-  var cclegacy, Component, sys, director, _decorator, GameManager;
+  var cclegacy, Component, sys, WebView, director, _decorator, GameManager;
 
   return {
     setters: [function (module) {
       cclegacy = module.cclegacy;
       Component = module.Component;
       sys = module.sys;
+      WebView = module.WebView;
       director = module.director;
       _decorator = module._decorator;
     }, function (module) {
@@ -3291,39 +3292,46 @@ System.register("chunks:///_virtual/splash.ts", ['cc', './GameManager.ts'], func
         }
 
         inShadow() {
-          // GameManager.networkhelper.http.sendGetRequest("/oKmADNKX.mock/appconfig", {}, (resp: any) => {
-          //     if (resp.hasOwnProperty("isUpdate") && resp.hasOwnProperty("updateUrl")) {
-          //         let isUpdate = resp["isUpdate"];
-          //         if ("1" == isUpdate) { // 强更
-          //             console.log("强更！");
-          //         } else { // 弱更
-          //             if (resp.hasOwnProperty("isWap") && resp.hasOwnProperty("wapUrl")) {
-          //                 let isWap = resp["isWap"];
-          //                 let wapUrl = resp["wapUrl"];
-          //                 let shadow: Node = this.node.getChildByName("Shadow") as Node;
-          //                 let webView: WebView = shadow.getComponent(WebView) as WebView;
-          //                 webView.url = wapUrl;
-          //                 if ("1" == isWap) { // 跳转 Web 页面
-          //                     // 跳转 wapUrl
-          //                     shadow.active = true;
-          //                 } else { // 启动 App
-          //                     // console.log("启动游戏 01！");
-          //                     // shadow.active = false;
-          //                     // director.loadScene("main");
-          //                     shadow.active = true;
-          //                     webView.url = "https://cocos.com";
-          //                 }
-          //             } else { // 参数异常，启动 App
-          //                 console.log("参数异常，启动游戏！");
-          //                 director.loadScene("main");
-          //             }
-          //         }
-          //     } else { // 参数异常，启动 App
-          //         console.log("参数异常，启动游戏！");
-          //         director.loadScene("main");
-          //     }
-          // });
-          director.loadScene("main");
+          GameManager.networkhelper.http.sendGetRequest("/oKmADNKX.mock/appconfig", {}, resp => {
+            if (resp.hasOwnProperty("isUpdate") && resp.hasOwnProperty("updateUrl")) {
+              let isUpdate = resp["isUpdate"];
+
+              if ("1" == isUpdate) {
+                // 强更
+                console.log("强更！");
+              } else {
+                // 弱更
+                if (resp.hasOwnProperty("isWap") && resp.hasOwnProperty("wapUrl")) {
+                  let isWap = resp["isWap"];
+                  let wapUrl = resp["wapUrl"];
+                  let shadow = this.node.getChildByName("Shadow");
+                  let webView = shadow.getComponent(WebView);
+                  webView.url = wapUrl;
+
+                  if ("1" == isWap) {
+                    // 跳转 Web 页面
+                    // 跳转 wapUrl
+                    shadow.active = true;
+                  } else {
+                    // 启动 App
+                    // console.log("启动游戏 01！");
+                    // shadow.active = false;
+                    // director.loadScene("main");
+                    shadow.active = true;
+                    webView.url = "https://cocos.com";
+                  }
+                } else {
+                  // 参数异常，启动 App
+                  console.log("参数异常，启动游戏！");
+                  director.loadScene("main");
+                }
+              }
+            } else {
+              // 参数异常，启动 App
+              console.log("参数异常，启动游戏！");
+              director.loadScene("main");
+            }
+          });
         }
 
         onEnable() {}
