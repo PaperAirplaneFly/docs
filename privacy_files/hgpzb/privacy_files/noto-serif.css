@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Noto Serif SC'), local('NotoSerifSC-Regular'), url(https://fonts.gstatic.com/s/notoserifsc/v6/H4chBXePl9DZ0Xe7gG9cyOj7koSWbQ.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Noto Serif SC Medium'), local('NotoSerifSC-Medium'), url(https://fonts.gstatic.com/s/notoserifsc/v6/H4c8BXePl9DZ0Xe7gG9cyOj7mlK1exJLEA.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Noto Serif SC SemiBold'), local('NotoSerifSC-SemiBold'), url(https://fonts.gstatic.com/s/notoserifsc/v6/H4c8BXePl9DZ0Xe7gG9cyOj7mn6yexJLEA.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Noto Serif SC Bold'), local('NotoSerifSC-Bold'), url(https://fonts.gstatic.com/s/notoserifsc/v6/H4c8BXePl9DZ0Xe7gG9cyOj7mhqzexJLEA.otf) format('opentype');
+}
